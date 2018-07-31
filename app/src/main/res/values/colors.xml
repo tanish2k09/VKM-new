@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimaryDarkBlue">#1565C0</color>
+    <color name="applicationBG">#000000</color>
+    <color name="secondBG">#424242</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="textColorPrimary">#88000000</color>
+    <color name="itemColor">#393939</color>
+
+    <color name="colorgray">#1F2332</color>
+    <color name="colorDark">#212121</color>
+    <color name="colorblack">#000000</color>
+    <color name="colorwhitedark">#EDE7F6</color>
+    <color name="colortransparent">#00000000</color>
+    <color name="colorwhite">#bdbdbd</color>
+    <color name="colorfullwhite">#ffffff</color>
+
+    <color name="colorpass">#e0e0e0</color>
+    <color name="colorfail">#d32f2f</color>
+
+    <color name="colorWhiteDull">#f0f0f0</color>
+    <color name="colorWhiteBg">#e0e0e0</color>
+
+
+    <color name="colorMaterialRed">#ef5350</color>
+    <color name="colorMaterialOrange">#FFfb8c00</color>
+    <color name="colorGreen">#44E769</color>
+    <color name="colorRed">#d32f2f</color>
+    <color name="colorMaterialGreen">#00c853</color>
+    <color name="colorMaterialPurple">#9575cd</color>
+    <color name="colorMaterialPink">#ec407a</color>
+    <color name="colorMaterialSkin">#ff7043</color>
+    <color name="colorMaterialYellow">#ffb300</color>
+    <color name="colorMaterialYellowDark">#ffa000</color>
+    <color name="colorMaterialIndigo">#5C6BC0</color>
+
+    <color name="colorPrimaryTeal">#26a69a</color>
+    <color name="colorPrimaryDarkTeal">#00766c</color>
+</resources>
