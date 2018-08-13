@@ -175,7 +175,6 @@ public class OnBoardActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(fsDatabaseHelper... dbHelperList) {
-            dbHelperList[0].scanAll();
             dbHelperList[0].getCpuCoreNum();
             return null;
         }

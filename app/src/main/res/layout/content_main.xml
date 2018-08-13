@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhiteBg"
+    android:background="@android:color/black"
     android:fitsSystemWindows="false">
 
     <FrameLayout
         android:id="@+id/main_layout_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_marginTop="8dp">
 
     </FrameLayout>
 </ScrollView>

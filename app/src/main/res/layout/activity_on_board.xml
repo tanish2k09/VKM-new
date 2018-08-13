@@ -81,7 +81,8 @@
                         android:text="@string/root_detecting"
                         android:textColor="@color/applicationBG"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
 
                     <TextView
                         android:id="@+id/busybox_onboard"
@@ -94,7 +95,8 @@
                         android:text="@string/busybox_onboard"
                         android:textColor="@color/applicationBG"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
 
                     <TextView
                         android:id="@+id/venom_check"
@@ -106,7 +108,8 @@
                         android:text="@string/venom_check"
                         android:textColor="@color/applicationBG"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
 
                     <TextView
                         android:id="@+id/mkdir_text"
@@ -118,7 +121,8 @@
                         android:text="@string/data_collect"
                         android:textColor="@color/applicationBG"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
 
                 </LinearLayout>
 

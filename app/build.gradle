@@ -38,8 +38,8 @@ android {
             dimension "version"
             minSdkVersion 23
             targetSdkVersion 27
-            versionCode 5
-            versionName 'Alpha5'
+            versionCode 7
+            versionName 'Alpha 7'
             versionNameSuffix '-material'
         }
     }
@@ -53,6 +53,7 @@ configurations.all {
 
 repositories {
     maven { url 'https://jitpack.io' }
+    jcenter()
 }
 
 def htextview_version = "0.1.6"
@@ -66,12 +67,19 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.github.topjohnwu:libsu:1.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
     // butter knife
     //implementation 'com.jakewharton:butterknife:8.8.1'
     //annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    
+
+    // Magisk's LibSU
+    implementation 'com.github.topjohnwu:libsu:1.1.1'
+
     //Hanks-HTextView
     implementation "com.hanks:htextview-base:$htextview_version"
+    implementation "com.hanks:htextview-scale:$htextview_version"       // optional
+    implementation "com.hanks:htextview-evaporate:$htextview_version"   // optional
+
+    //Color picker
+    implementation 'com.pes.materialcolorpicker:library:1.2.4' // Add MIT license in about
 }

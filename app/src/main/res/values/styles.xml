@@ -6,22 +6,23 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:typeface">monospace</item>
-        <item name="android:textViewStyle">@style/FontTextViewStyle</item>
-        <item name="android:buttonStyle">@style/FontButtonStyle</item>
-    </style>
-
-    <style name="FontTextViewStyle">
-        <item name="android:fontFamily">monospace</item>
-    </style>
-
-    <style name="FontButtonStyle">
-        <item name="android:fontFamily">monospace</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="spinnerStyle" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style parent="@android:style/Widget.Spinner" name="SpinnerwithNoArrow">
+        <item name="android:background">@android:drawable/edit_text</item>
+    </style>
+
+    <style name="spinnerDropDownStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:typeface">monospace</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

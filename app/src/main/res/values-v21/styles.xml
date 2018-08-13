@@ -6,10 +6,9 @@
     </style>
 
     <style name="MainTheme" parent="AppTheme.NoActionBar">
-        <item name="android:colorControlActivated">@color/itemColor</item>
-        <item name="android:colorControlNormal">@color/applicationBG</item>
         <item name="android:actionMenuTextColor">@color/textColorPrimary</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorControlActivated">#ffffff</item>
+        <item name="android:colorControlNormal">#444444</item>
     </style>
 
     <style name="SplashTheme" parent="AppTheme.NoActionBar">

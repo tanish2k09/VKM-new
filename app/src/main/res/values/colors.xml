@@ -4,10 +4,12 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimaryDarkBlue">#1565C0</color>
     <color name="applicationBG">#000000</color>
-    <color name="secondBG">#424242</color>
+    <color name="secondBG">#474747</color>
+    <color name="secondBGSemi">#77474747</color>
     <color name="colorAccent">#ff4081</color>
-    <color name="textColorPrimary">#88000000</color>
+    <color name="textColorPrimaryDark">#88000000</color>
     <color name="itemColor">#393939</color>
+    <color name="textColorPrimary">#ffffff</color>
 
     <color name="colorgray">#1F2332</color>
     <color name="colorDark">#212121</color>
@@ -34,6 +36,7 @@
     <color name="colorMaterialSkin">#ff7043</color>
     <color name="colorMaterialYellow">#ffb300</color>
     <color name="colorMaterialYellowDark">#ffa000</color>
+    <color name="colorMaterialYellowDarkSemi">#CCffa000</color>
     <color name="colorMaterialIndigo">#5C6BC0</color>
 
     <color name="colorPrimaryTeal">#26a69a</color>

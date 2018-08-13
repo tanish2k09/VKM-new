@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android" android:shareInterpolator="false" >
-    <objectAnimator android:interpolator="@android:anim/accelerate_decelerate_interpolator"
-        android:valueFrom="-180"
-        android:valueTo="0"
-        android:propertyName="rotation"
-        android:duration="80" />
-</set>

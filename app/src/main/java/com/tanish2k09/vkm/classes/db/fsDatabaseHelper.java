@@ -5,7 +5,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.tanish2k09.vkm.classes.sysFs.sysFile;
+import com.tanish2k09.vkm.classes.sysFs.SysFile;
+import com.topjohnwu.superuser.Shell;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 public class fsDatabaseHelper extends SQLiteOpenHelper {
@@ -39,11 +46,6 @@ public class fsDatabaseHelper extends SQLiteOpenHelper {
         return dbHelper;
     }
 
-    public void scanAll()
-    {
-        scanCPU();
-    }
-
     public void scanCPU()
     {
         scanCPUfreq();
@@ -53,53 +55,62 @@ public class fsDatabaseHelper extends SQLiteOpenHelper {
     {
         int retVal;
 
-        sysFile cpuGovernor = new sysFile(Paths.cpufreq_folder_prime+"cpu0/cpufreq/","scaling_governor");
-        retVal = cpuGovernor.prepareInput();
+        SysFile sysFile;
+
+        /* CPU GOVERNOR */
+        sysFile= new SysFile(Paths.cpufreq_folder_prime+"cpu0/cpufreq/","scaling_governor");
+        retVal = sysFile.prepareInput();
         if(retVal == 0) {
-            writeWorkingCPUVal(cpuGovernor.getFolderPath(), cpuGovernor.getFileName(), cpuGovernor.readLine(1));
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), sysFile.readLine(1));
         }
         else {
-            writeWorkingCPUVal(cpuGovernor.getFolderPath(), cpuGovernor.getFileName(), ""+retVal);
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), ""+retVal);
         }
 
-        sysFile cpuGovListFile = new sysFile(Paths.cpufreq_folder_prime + "cpu0/",Paths.governorListFileName);
-        retVal = cpuGovListFile.prepareInput();
+        /* LIST OF CPU GOVS */
+        sysFile = new SysFile(Paths.cpufreq_folder_prime + "cpu0/cpufreq/",Paths.governorListFileName);
+        retVal = sysFile.prepareInput();
         if(retVal == 0) {
-            writeWorkingCPUVal(cpuGovListFile.getFolderPath(),cpuGovListFile.getFileName(),cpuGovListFile.readLine(1));
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), sysFile.readLine(1));
         }
         else {
-            writeWorkingCPUVal(cpuGovListFile.getFolderPath(),cpuGovListFile.getFileName(),""+retVal);
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), ""+retVal);
         }
 
+        /* LIST OF FREQS */
+        sysFile = new SysFile(Paths.cpufreq_folder_prime + "cpu0/cpufreq/",Paths.cpufreq_possibleFreqsFile);
+        retVal = sysFile.prepareInput();
+        if(retVal == 0) {
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), sysFile.readLine(1));
+        }
+        else {
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), ""+retVal);
+        }
+
+        /* CURRENT MAX FREQ */
+        sysFile = new SysFile(Paths.cpufreq_folder_prime + "cpu0/cpufreq/",Paths.cpufreq_curMaxFreqName);
+        retVal = sysFile.prepareInput();
+        if(retVal == 0) {
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), sysFile.readLine(1));
+        }
+        else {
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), ""+retVal);
+        }
+
+        /* CURRENT MIN FREQ */
+        sysFile = new SysFile(Paths.cpufreq_folder_prime + "cpu0/cpufreq/",Paths.cpufreq_curMinFreqName);
+        retVal = sysFile.prepareInput();
+        if(retVal == 0) {
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), sysFile.readLine(1));
+        }
+        else {
+            writeWorkingCPUVal(sysFile.getFolderPath(), sysFile.getFileName(), ""+retVal);
+        }
+
+
+        /* This MUST remain at the end */
         if(!cpufreq_inflated)
             cpufreq_inflated = true;
-    }
-
-    public void scanCPUCoreFreqs()
-    {
-        int cnt;
-        int retval;
-        for (cnt = 0; cnt < getCpuCoreNum(); cnt++) {
-            int isCurrentCoreOn;
-            sysFile coreOn = new sysFile(Paths.cpufreq_folder_prime + "cpu" + cnt + "/", Paths.cpufreq_coreOnlineFileName);
-            retval = coreOn.prepareInput();
-            if (retval == 0) {
-                coreOn.readInput(1, 0);
-                isCurrentCoreOn = Integer.parseInt(coreOn.getInputInt(1, 0));
-                if (isCurrentCoreOn == 1) {
-                    sysFile coreFreq = new sysFile(Paths.cpufreq_folder_prime + "cpu" + cnt + "/cpufreq/", Paths.cpufreq_freqFileName);
-                    retval = coreFreq.prepareInput();
-                    if (retval == 0) {
-                        writeWorkingCPUCoreFreqVal(cnt, coreFreq.readFreqLine(1));
-                    }
-                } else {
-                    writeWorkingCPUCoreFreqVal(cnt, "0");
-                }
-            }
-        }
-
-        if(!cpuCoreFreq_inflated)
-            cpuCoreFreq_inflated = true;
     }
 
     private void writeWorkingCPUVal(String path, String filename, String val) {
@@ -107,14 +118,6 @@ public class fsDatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO "+TABLE_CPU+" (PATH,FILENAME,VAL) VALUES ('" + path + "','" + filename + "','" + val + "');");
         else
             db.execSQL("UPDATE "+TABLE_CPU+" SET VAL = '"+val+"' WHERE PATH = '"+path+"' AND FILENAME = '"+filename+"';");
-    }
-
-    private void writeWorkingCPUCoreFreqVal(int corenum, String val)
-    {
-        if(!cpuCoreFreq_inflated)
-            db.execSQL("INSERT INTO "+TABLE_CPUCOREFREQ+" (CORENUM,VAL) VALUES ("+corenum+",'"+val+"');");
-        else
-            db.execSQL("UPDATE "+TABLE_CPUCOREFREQ+" SET VAL = '"+val+"' WHERE CORENUM = "+corenum+";");
     }
 
     public String readCoreFreqVal(int corenum,String Tablename)
@@ -130,6 +133,23 @@ public class fsDatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
         }
         return val;
+    }
+
+    public String readCpuCoreFreqVal(int corenum)
+    {
+        File coreFile = new File(Paths.cpufreq_folder_prime+"cpu"+corenum+"/cpufreq/"+Paths.cpufreq_curfreqFileName);
+        if(coreFile.exists())
+        {
+            try {
+                FileInputStream stream = new FileInputStream(coreFile);
+                BufferedReader br = new BufferedReader(new InputStreamReader(stream));
+                return br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "0";
+            }
+        }
+        return "0";
     }
 
     public String readVal(String path, String filename, String TableName)
@@ -152,7 +172,7 @@ public class fsDatabaseHelper extends SQLiteOpenHelper {
         if(cpuCoreNum != 0)
             return cpuCoreNum;
 
-        sysFile cpuCoreNumFile = new sysFile(Paths.cpufreq_folder_prime,"possible");
+        SysFile cpuCoreNumFile = new SysFile(Paths.cpufreq_folder_prime,"possible");
         int retVal = cpuCoreNumFile.prepareInput();
         if(retVal == 0)
         {
@@ -167,6 +187,25 @@ public class fsDatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return 1;
+    }
+
+    public void execChmodWrite(String prePerm, String writePerm, String folder, String file, String value)
+    {
+        if(!writePerm.equals("-1"))
+            chmodCmd(writePerm, folder, file);
+        Shell.Sync.su("echo '" + value + "' > " + folder + file);
+        if(!prePerm.equals("-1"))
+            chmodCmd(prePerm,folder,file);
+    }
+
+    public void execChmodWriteCpu(String prePerm, String writePerm, String file,int corenum, String value)
+    {
+        execChmodWrite(prePerm,writePerm,Paths.cpufreq_folder_prime + "cpu" + corenum + "/cpufreq/", file, value);
+    }
+
+    private void chmodCmd(String perm, String folder, String file)
+    {
+        Shell.Sync.su("chmod "+perm+" "+folder+file);
     }
 
 

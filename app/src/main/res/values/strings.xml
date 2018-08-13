@@ -21,8 +21,18 @@
     <string name="freeze">Freeze</string>
     <string name="start">Start</string>
 
+    <string name="wakeGestures">Wake Gestures</string>
+    <string name="battery">Battery</string>
+    <string name="vm">Virtual Memory</string>
+    <string name="coreInfo">Core Info</string>
+
     <!-- CPU -->
     <string name="cpu">CPU</string>
     <string name="cpu_head">CPU info</string>
+    <string name="maxfreq">Max Frequency : </string>
+    <string name="minfreq">Min Frequency : </string>
     <string name="cpugov">CPU Governor : </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="blank">Blank</string>
 </resources>

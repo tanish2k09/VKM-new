@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
  * Usage : Then proceed to reading the vkm file using the provided functions
  */
 
-public class sysFile {
+public class SysFile {
 
     private SuFileInputStream inputStream;
 
@@ -30,7 +30,7 @@ public class sysFile {
     private String path, vkm_file_path, fileName, folderPath;
     private static final String VKM_path = Paths.VKM_path;
 
-    public sysFile(String sysPath, String sysFileName )
+    public SysFile(String sysPath, String sysFileName )
     {
         fileName = sysFileName;
         folderPath = sysPath;

@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="5dp"
-    android:layout_marginStart="5dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    tools:background="#000000"
     tools:context=".fragments.FreqFragments.CoreFreqFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -26,14 +27,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+
+    <com.hanks.htextview.evaporate.EvaporateTextView
         android:id="@+id/coreFreq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:maxLines="1"
+        android:minLines="1"
         android:text="@string/scanning"
         android:textColor="@color/textColorPrimary"
         android:textSize="15sp"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/coreNumText"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +51,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:editable="false"
+        android:checked="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"

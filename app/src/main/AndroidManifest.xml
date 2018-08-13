@@ -14,9 +14,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|fontScale|screenSize"
             android:label="@string/home_header"
             android:screenOrientation="portrait"
+            android:resizeableActivity="false"
             android:theme="@style/MainTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

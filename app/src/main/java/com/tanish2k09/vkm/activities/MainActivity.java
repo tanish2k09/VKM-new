@@ -1,7 +1,5 @@
 package com.tanish2k09.vkm.activities;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.tanish2k09.vkm.R;
 import com.tanish2k09.vkm.fragments.SectionFragments.CPUsectionFragment;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private Toolbar toolbar;
+    private TextView title;
 
     /* Current Fragment codes :
      * 0 - Home
@@ -37,38 +37,32 @@ public class MainActivity extends AppCompatActivity {
 
     private void init_bottom_sheet()
     {
-        ImageButton arrow_bottom = findViewById(R.id.arrow_bottom_sheet);
         LinearLayout ll = findViewById(R.id.bottom_parent);
         final BottomSheetBehavior<LinearLayout> bsb = BottomSheetBehavior.from(ll);
-
+        ImageButton navButton = findViewById(R.id.NavButton);
         final Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
         final Animation FadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
-        final Animator arrow_downer = AnimatorInflater.loadAnimator(getApplicationContext(),R.animator.rotate_half);
-        final Animator arrow_upper = AnimatorInflater.loadAnimator(getApplicationContext(),R.animator.rotate_half_reverse);
+
         animFadeOut.setInterpolator(getApplicationContext(),android.R.interpolator.linear);
         FadeIn.setInterpolator(getApplicationContext(),android.R.interpolator.linear);
         animFadeOut.setDuration(200);
         FadeIn.setDuration(200);
-        arrow_downer.setTarget(arrow_bottom);
-        arrow_upper.setTarget(arrow_bottom);
         final Button ultimate = findViewById(R.id.button_ultimate_overlay);
-
-        arrow_bottom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(bsb.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
-                    bsb.setState(BottomSheetBehavior.STATE_EXPANDED);
-                }
-                else if(bsb.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                    bsb.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                }
-            }
-        });
 
         ultimate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bsb.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+        });
+
+        navButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bsb.getState() == BottomSheetBehavior.STATE_EXPANDED)
+                    bsb.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                else if (bsb.getState() == BottomSheetBehavior.STATE_COLLAPSED)
+                    bsb.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
 
@@ -107,26 +101,19 @@ public class MainActivity extends AppCompatActivity {
 
         bsb.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             int prevState = BottomSheetBehavior.STATE_COLLAPSED;
-            int lastOpenState = BottomSheetBehavior.STATE_COLLAPSED;
 
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 if(newState != prevState)
                 {
                     if(newState == BottomSheetBehavior.STATE_COLLAPSED) {
-                        if(lastOpenState == BottomSheetBehavior.STATE_EXPANDED)
-                            arrow_upper.start();
                         if (ultimate.isEnabled())
                             ultimate.startAnimation(animFadeOut);
                         prevState = newState;
-                        lastOpenState = newState;
                     }
                     else if (newState == BottomSheetBehavior.STATE_EXPANDED)
                     {
-                        if(lastOpenState == BottomSheetBehavior.STATE_COLLAPSED)
-                            arrow_downer.start();
                         prevState = newState;
-                        lastOpenState = newState;
                     }
                     else if (prevState == BottomSheetBehavior.STATE_COLLAPSED)
                     {
@@ -148,9 +135,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadCPUfragment()
     {
         Objects.requireNonNull(toolbar).setBackgroundColor(getColor(R.color.colorMaterialYellow));
-        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.cpu);
-        Window window = getWindow();
-        window.setStatusBarColor(getColor(R.color.colorMaterialYellowDark));
+        title.setText(R.string.cpu);
         ft = fm.beginTransaction();
         CPUsectionFragment cpuSectionFragment = new CPUsectionFragment();
         ft.replace(R.id.main_layout_display,cpuSectionFragment,"cpu");
@@ -174,8 +159,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.home_header);
-        toolbar.setTitleTextColor(getColor(R.color.textColorPrimary));
+        title = findViewById(R.id.toolbar_title);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(android.R.color.black,getTheme()));
 
         Intent intent = getIntent();
         String nextFragment = intent.getStringExtra("fragment");
@@ -193,11 +180,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy()
     {
-        super.onDestroy();
         if(currentFragment == 1)
         {
             CPUsectionFragment CpuSectionFragment = (CPUsectionFragment) fm.findFragmentByTag("cpu");
             CpuSectionFragment.setStopCoreFreqThread();
         }
+        super.onDestroy();
     }
 }

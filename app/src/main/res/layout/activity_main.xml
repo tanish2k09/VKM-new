@@ -5,9 +5,27 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     tools:openDrawer="start">
 
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:elevation="49dp"
+        tools:background="#FFFFFF">
+
+        <View
+            android:id="@+id/shadowView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottomSheetShadowSize"
+            android:background="@drawable/shadow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
     <include
         layout="@layout/app_bar_main"
@@ -19,35 +37,81 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/bottom_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:elevation="50dp"
+        android:fitsSystemWindows="false"
         android:orientation="vertical"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="27dp"
+        app:behavior_peekHeight="?attr/actionBarSize"
         app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
         tools:layout_marginTop="-300dp">
 
-        <ImageButton
-            android:id="@+id/arrow_bottom_sheet"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="-20dp"
-            android:layout_marginEnd="@dimen/bottomSheetMargin"
-            android:layout_marginStart="@dimen/bottomSheetMargin"
-            android:background="@color/colortransparent"
-            android:elevation="60dp"
-            app:srcCompat="@drawable/ic_keyboard_arrow_up_white_24dp" />
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:outlineProvider="background"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimaryTeal"
+                    android:elevation="100dp"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_header"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/NavButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="12dp"
+                        android:background="@android:color/transparent"
+                        app:srcCompat="@drawable/ic_menu_black_24dp"
+                        tools:ignore="ContentDescription" />
+
+                </android.support.v7.widget.Toolbar>
+
+
+            </android.support.design.widget.AppBarLayout>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/sectionLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@android:color/transparent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </ScrollView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/bottomSheetMargin"
-            android:layout_marginStart="@dimen/bottomSheetMargin"
-            android:layout_marginTop="-4dp"
             android:elevation="50dp"
+            android:fitsSystemWindows="false"
             app:cardBackgroundColor="@android:color/black"
-            app:cardCornerRadius="14dp"
+            app:cardCornerRadius="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -85,8 +149,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:text="Home"
+                            android:text="@string/home_header"
                             android:textColor="@color/colorPrimaryTeal"
+                            android:textScaleX="1.1"
                             android:textSize="15sp"
                             android:textStyle="bold" />
                     </android.support.v7.widget.CardView>
@@ -120,9 +185,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="CPU"
+                            android:text="@string/cpu"
                             android:textColor="@android:color/black"
-                            android:textStyle="bold" />
+                            android:textScaleX="1.1"
+                            android:textStyle="bold"
+                            android:typeface="monospace" />
                     </android.support.v7.widget.CardView>
                 </android.support.v7.widget.CardView>
 
@@ -153,9 +220,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Wake Gestures"
+                            android:text="@string/wakeGestures"
                             android:textColor="@color/colorMaterialSkin"
-                            android:textStyle="bold" />
+                            android:textScaleX="1.1"
+                            android:textStyle="bold"
+                            android:typeface="monospace" />
                     </android.support.v7.widget.CardView>
                 </android.support.v7.widget.CardView>
 
@@ -186,9 +255,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Battery"
+                            android:text="@string/battery"
                             android:textColor="@color/colorMaterialPink"
-                            android:textStyle="bold" />
+                            android:textScaleX="1.1"
+                            android:textStyle="bold"
+                            android:typeface="monospace" />
                     </android.support.v7.widget.CardView>
                 </android.support.v7.widget.CardView>
 
@@ -220,24 +291,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Virtual Memory"
+                            android:text="@string/vm"
                             android:textColor="@color/colorPrimaryDarkBlue"
-                            android:textStyle="bold" />
+                            android:textScaleX="1.1"
+                            android:textStyle="bold"
+                            android:typeface="monospace" />
                     </android.support.v7.widget.CardView>
                 </android.support.v7.widget.CardView>
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="14dp"
-            android:layout_gravity="bottom"
-            android:layout_marginEnd="@dimen/bottomSheetMargin"
-            android:layout_marginStart="@dimen/bottomSheetMargin"
-            android:layout_marginTop="-14dp"
-            android:background="@color/colorblack"
-            android:foreground="@color/colorblack" />
 
     </LinearLayout>
 
