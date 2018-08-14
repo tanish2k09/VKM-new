@@ -12,4 +12,7 @@
     <dimen name="bottomSheetMargin">8dp</dimen>
     <dimen name="bottomSheetShadowSize">15dp</dimen>
     <dimen name="profileCardHeight">150dp</dimen>
+    <dimen name="mainCardMarginsMaterial">30dp</dimen>
+    <dimen name="rootCardElevation">15dp</dimen>
+    <dimen name="rootCardCorner">6dp</dimen>
 </resources>

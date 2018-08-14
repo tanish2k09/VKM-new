@@ -134,13 +134,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadCPUfragment()
     {
-        Objects.requireNonNull(toolbar).setBackgroundColor(getColor(R.color.colorMaterialYellow));
+        Objects.requireNonNull(toolbar).setBackgroundColor(getColor(R.color.colorCPU));
         title.setText(R.string.cpu);
-        ft = fm.beginTransaction();
+       /* ft = fm.beginTransaction();
         CPUsectionFragment cpuSectionFragment = new CPUsectionFragment();
         ft.replace(R.id.main_layout_display,cpuSectionFragment,"cpu");
         ft.commit();
-        currentFragment = 1;
+        currentFragment = 1;*/
     }
 
 
@@ -162,14 +162,15 @@ public class MainActivity extends AppCompatActivity {
         title = findViewById(R.id.toolbar_title);
         Objects.requireNonNull(getSupportActionBar()).setTitle(null);
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(android.R.color.black,getTheme()));
+        window.setStatusBarColor(getResources().getColor(R.color.colorCPU,getTheme()));
 
-        Intent intent = getIntent();
-        String nextFragment = intent.getStringExtra("fragment");
-
+/*
         fm = getSupportFragmentManager();
 
         init_bottom_sheet();
+*/
+        Intent intent = getIntent();
+        String nextFragment = intent.getStringExtra("fragment");
 
         if (nextFragment.equals("cpu"))
         {

@@ -39,6 +39,9 @@
     <color name="colorMaterialYellowDarkSemi">#CCffa000</color>
     <color name="colorMaterialIndigo">#5C6BC0</color>
 
+    <!-- Section Color Defines -->
+    <color name="colorCPU">@color/colorPrimaryDarkBlue</color>
+
     <color name="colorPrimaryTeal">#26a69a</color>
     <color name="colorPrimaryDarkTeal">#00766c</color>
 </resources>
