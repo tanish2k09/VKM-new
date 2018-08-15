@@ -5,14 +5,12 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="CPUcardRadius">10dp</dimen>
-    <dimen name="defaultCardRadius">10dp</dimen>
-    <dimen name="CpuCardElevation">2dp</dimen>
     <dimen name="CpuCoreCardMinHeight">40dp</dimen>
     <dimen name="bottomSheetMargin">8dp</dimen>
     <dimen name="bottomSheetShadowSize">15dp</dimen>
     <dimen name="profileCardHeight">150dp</dimen>
-    <dimen name="mainCardMarginsMaterial">30dp</dimen>
-    <dimen name="rootCardElevation">15dp</dimen>
-    <dimen name="rootCardCorner">6dp</dimen>
+    <dimen name="mainCardMarginsMaterial">10dp</dimen>
+    <dimen name="rootCardElevation">6dp</dimen>
+    <dimen name="rootCardCorner">4dp</dimen>
+    <dimen name="cardCorner">4dp</dimen>
 </resources>

@@ -136,11 +136,11 @@ public class MainActivity extends AppCompatActivity {
     {
         Objects.requireNonNull(toolbar).setBackgroundColor(getColor(R.color.colorCPU));
         title.setText(R.string.cpu);
-       /* ft = fm.beginTransaction();
+        ft = fm.beginTransaction();
         CPUsectionFragment cpuSectionFragment = new CPUsectionFragment();
         ft.replace(R.id.main_layout_display,cpuSectionFragment,"cpu");
         ft.commit();
-        currentFragment = 1;*/
+        currentFragment = 1;
     }
 
 
@@ -164,11 +164,10 @@ public class MainActivity extends AppCompatActivity {
         Window window = getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.colorCPU,getTheme()));
 
-/*
         fm = getSupportFragmentManager();
 
         init_bottom_sheet();
-*/
+
         Intent intent = getIntent();
         String nextFragment = intent.getStringExtra("fragment");
 
