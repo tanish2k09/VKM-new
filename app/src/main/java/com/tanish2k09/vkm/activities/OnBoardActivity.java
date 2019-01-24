@@ -12,7 +12,6 @@ import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.tanish2k09.vkm.R;
 import com.topjohnwu.superuser.Shell;
@@ -62,7 +61,7 @@ public class OnBoardActivity extends AppCompatActivity {
 
         //Asynced sucheck
         scA = new sucheckAsync(this);
-        cVA = new checkVenomAsync(this);
+        //cVA = new checkVenomAsync(this);
         dataInflater = new dbDataInflater(this);
 
         scA.execute();
@@ -77,7 +76,7 @@ public class OnBoardActivity extends AppCompatActivity {
     private void launch(int code) {
         if (code == 0)
         {
-            cVA.execute();
+            //cVA.execute();
         }
         else if(code == 1) {
             fsDatabaseHelper dbHelper = fsDatabaseHelper.getDbHelper(this);
@@ -104,7 +103,7 @@ public class OnBoardActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            Shell.Async.su("cd /sys/..");
+            Shell.su("cd /sys/..").exec();
             got_root = Shell.rootAccess();
             return null;
         }
@@ -116,7 +115,7 @@ public class OnBoardActivity extends AppCompatActivity {
                 activity.root_check.setText(R.string.root_detect_true);
                 activity.root_check.setTextColor(getResources().getColor(color_success,getTheme()));
                 activity.busybox_text.setTextColor(getResources().getColor(color_success,getTheme()));
-                activity.launch(0);
+                activity.launch(1);
             }
             else {
                 activity.root_check.setText(R.string.root_detect_false);
@@ -176,6 +175,7 @@ public class OnBoardActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(fsDatabaseHelper... dbHelperList) {
             dbHelperList[0].getCpuCoreNum();
+            dbHelperList[0].setupPermissions();
             return null;
         }
 
@@ -192,7 +192,7 @@ public class OnBoardActivity extends AppCompatActivity {
     protected void onDestroy()
     {
         scA.cancel(true);
-        cVA.cancel(true);
+        //cVA.cancel(true);
         dataInflater.cancel(true);
         super.onDestroy();
     }

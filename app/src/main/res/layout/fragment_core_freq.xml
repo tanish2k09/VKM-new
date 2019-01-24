@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
-    tools:background="#000000"
+    tools:background="@color/defaultBG"
     tools:context=".fragments.FreqFragments.CoreFreqFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,6 +20,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:foregroundGravity="center_vertical|center_horizontal"
+        android:minWidth="55dp"
         android:textColor="@color/textColorPrimary"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -27,22 +28,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <com.hanks.htextview.evaporate.EvaporateTextView
         android:id="@+id/coreFreq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:focusableInTouchMode="false"
+        android:gravity="left"
         android:maxLines="1"
         android:minLines="1"
+        android:minWidth="60dp"
+        android:saveEnabled="true"
+        android:singleLine="true"
         android:text="@string/scanning"
         android:textColor="@color/textColorPrimary"
+        android:textIsSelectable="false"
         android:textSize="15sp"
+        android:textStyle="bold"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/coreNumText"
+        app:layout_constraintEnd_toStartOf="@+id/simplyKhz"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_optimizationLevel="none" />
+
+    <TextView
+        android:id="@+id/simplyKhz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/simplyKhz"
+        android:textColor="@color/textColorPrimary"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--
     <Switch
         android:id="@+id/isCpuCoreOn"
         android:layout_width="wrap_content"
@@ -56,5 +80,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@+id/coreFreq"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:checked="true" />
+        -->
 </android.support.constraint.ConstraintLayout>

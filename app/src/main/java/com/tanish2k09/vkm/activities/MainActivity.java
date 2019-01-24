@@ -3,6 +3,7 @@ package com.tanish2k09.vkm.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -26,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private Toolbar toolbar;
+    private ConstraintLayout toolbar;
     private TextView title;
+    private BottomSheetBehavior<LinearLayout> bsb;
 
     /* Current Fragment codes :
      * 0 - Home
@@ -38,15 +40,15 @@ public class MainActivity extends AppCompatActivity {
     private void init_bottom_sheet()
     {
         LinearLayout ll = findViewById(R.id.bottom_parent);
-        final BottomSheetBehavior<LinearLayout> bsb = BottomSheetBehavior.from(ll);
+        bsb = BottomSheetBehavior.from(ll);
         ImageButton navButton = findViewById(R.id.NavButton);
-        final Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
-        final Animation FadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
+        final Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+        final Animation FadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
 
         animFadeOut.setInterpolator(getApplicationContext(),android.R.interpolator.linear);
         FadeIn.setInterpolator(getApplicationContext(),android.R.interpolator.linear);
-        animFadeOut.setDuration(200);
-        FadeIn.setDuration(200);
+        animFadeOut.setDuration(500);
+        FadeIn.setDuration(500);
         final Button ultimate = findViewById(R.id.button_ultimate_overlay);
 
         ultimate.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             public void onAnimationRepeat(Animation animation) {}
         });
 
+
         bsb.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             int prevState = BottomSheetBehavior.STATE_COLLAPSED;
 
@@ -107,8 +110,9 @@ public class MainActivity extends AppCompatActivity {
                 if(newState != prevState)
                 {
                     if(newState == BottomSheetBehavior.STATE_COLLAPSED) {
-                        if (ultimate.isEnabled())
+                        if (ultimate.isEnabled()) {
                             ultimate.startAnimation(animFadeOut);
+                        }
                         prevState = newState;
                     }
                     else if (newState == BottomSheetBehavior.STATE_EXPANDED)
@@ -158,11 +162,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
         title = findViewById(R.id.toolbar_title);
-        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
+        //Objects.requireNonNull(getSupportActionBar()).setTitle(null);
         Window window = getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.colorCPU,getTheme()));
+        toolbar.setSystemUiVisibility(toolbar.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         fm = getSupportFragmentManager();
 
@@ -186,5 +191,15 @@ public class MainActivity extends AppCompatActivity {
             CpuSectionFragment.setStopCoreFreqThread();
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(bsb.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            bsb.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            return;
+        }
+
+        moveTaskToBack(true);
     }
 }

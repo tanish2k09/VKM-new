@@ -1,7 +1,8 @@
 package com.tanish2k09.vkm.fragments.FreqFragments;
 
 
-import android.content.Context;
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -14,23 +15,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.hanks.htextview.base.HTextView;
 import com.tanish2k09.vkm.R;
 import com.tanish2k09.vkm.classes.db.Paths;
-import com.topjohnwu.superuser.Shell;
+import com.tanish2k09.vkm.classes.db.fsDatabaseHelper;
 
-import java.lang.reflect.Type;
+import java.util.Objects;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CoreFreqFragment extends Fragment {
 
-    private TextView freqText;
-    private Switch isOn;
+    private HTextView freqText;
+    //private Switch isOn;
     private int thisCoreNum = -1;
     private int onColor, onColorSemi;
-    private Context ctx;
+    private View v;
+    private Typeface textTfCache;
 
     public CoreFreqFragment() {
         // Required empty public constructor
@@ -40,55 +46,62 @@ public class CoreFreqFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_core_freq, container, false);
-        ctx = v.getContext();
+        v = inflater.inflate(R.layout.fragment_core_freq, container, false);
 
         freqText = v.findViewById(R.id.coreFreq);
-        isOn = v.findViewById(R.id.isCpuCoreOn);
+        //isOn = v.findViewById(R.id.isCpuCoreOn);
         TextView coreNumText = v.findViewById(R.id.coreNumText);
 
-        coreNumText.setTypeface(Typeface.createFromAsset(v.getContext().getApplicationContext().getAssets(),String.format("fonts/%s","Archive.otf")));
+        //coreNumText.setTypeface(Typeface.createFromAsset(v.getContext().getApplicationContext().getAssets(),String.format("fonts/%s","Archive.otf")));
+        //textTfCache = freqText.getTypeface();
 
         String coreText = getResources().getString(R.string.core,thisCoreNum);
         coreNumText.setText(coreText);
 
-        setDarkSwitchActivatedColor();
+        //setDarkSwitchActivatedColor();
 
+        /*
         isOn.setOnClickListener(new View.OnClickListener() {
+
+            fsDatabaseHelper dbHelper = fsDatabaseHelper.getDbHelper(v.getContext());
+
             @Override
             public void onClick(View v) {
                 if(isOn.isChecked())
-                    Shell.Async.su("echo 0 > "+ Paths.cpufreq_folder_prime + "cpu" + thisCoreNum + Paths.cpufreq_coreOnlineFile );
+                    dbHelper.execChmodWrite("0444","0644",Paths.cpufreq_folder_prime+thisCoreNum+"/","online","0");
                 else
-                    Shell.Async.su("echo 1 > "+ Paths.cpufreq_folder_prime + "cpu" + thisCoreNum + Paths.cpufreq_coreOnlineFile );
+                    dbHelper.execChmodWrite("0444","0644",Paths.cpufreq_folder_prime+thisCoreNum+"/","online","1");
             }
         });
+        */
 
         return v;
     }
 
     public void setFreqText(String freq)
     {
+        if (freqText.getText().toString().equals(freq))
+            return;
+
         if(freq.equals("Offline"))
         {
-            freqText.setText(freq);
-            freqText.setTypeface(freqText.getTypeface(), Typeface.ITALIC);
-            return;
+            freqText.animateText(freq);
+            //freqText.setTypeface(textTfCache, Typeface.NORMAL);
         }
-        freqText.setText(getString(R.string.freq,freq));
-        freqText.setTypeface(freqText.getTypeface(), Typeface.BOLD);
+        else {
+            freqText.animateText(getString(R.string.freq, freq));
+            //freqText.setTypeface(textTfCache, Typeface.BOLD);
+        }
     }
 
-    public void setIsOn(boolean on)
-    {
-        isOn.setChecked(on);
-    }
+    //public void setIsOn(boolean on) { isOn.setChecked(on); }
 
     public void setCoreNumText(int core)
     {
         thisCoreNum = core;
     }
 
+    /*
     public void setDarkSwitchActivatedColor()
     {
         int[][] states = new int[][] {
@@ -97,13 +110,13 @@ public class CoreFreqFragment extends Fragment {
         };
 
         int[] thumbColors = new int[] {
-                getColorInt(R.color.secondBG),
-                getColorInt(onColor)
+                getColorInt("R.color.secondBG",R.color.secondBG),
+                getColorInt("onColor", onColor)
         };
 
         int[] trackColors = new int[] {
-                getColorInt(R.color.secondBGSemi),
-                getColorInt(onColorSemi)
+                getColorInt("R.color.secondBGSemi",R.color.secondBGSemi),
+                getColorInt("onColorSemi",onColorSemi)
         };
 
         DrawableCompat.setTintList(DrawableCompat.wrap(isOn.getThumbDrawable()), new ColorStateList(states, thumbColors));
@@ -116,9 +129,22 @@ public class CoreFreqFragment extends Fragment {
         onColorSemi = colorSemi;
     }
 
-    private int getColorInt(int colorID)
+    @SuppressLint("ApplySharedPref")
+    private int getColorInt(String colorID, int colorIDint)
     {
-        return ContextCompat.getColor(ctx,colorID);
+        SharedPreferences sp = Objects.requireNonNull(getActivity()).getSharedPreferences("colorsCoreFreq",MODE_PRIVATE);
+        int val = sp.getInt(colorID , -1);
+        if (val == -1)
+        {
+            int color = ContextCompat.getColor(v.getContext(),colorIDint);
+            SharedPreferences.Editor sp_editor = sp.edit();
+            sp_editor.putInt(colorID, color);
+            sp_editor.commit();
+            return color;
+        }
+
+        return val;
     }
+    */
 
 }
