@@ -5,57 +5,45 @@
     android:id="@+id/rootCpuSectionLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/mainCardMarginsMaterial"
-    android:layout_marginStart="@dimen/mainCardMarginsMaterial"
     android:animateLayoutChanges="true"
     android:background="@android:color/transparent"
     android:fitsSystemWindows="true"
     tools:context=".fragments.SectionFragments.CPUsectionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cpuDetailCard"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="40"
+        android:layout_height="match_parent"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/colorCPU"
-        app:cardCornerRadius="@dimen/rootCardCorner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/rootCardElevation"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/colorCPU"
-        app:cardCornerRadius="@dimen/rootCardCorner"
-        app:cardElevation="@dimen/rootCardElevation"
-        app:layout_constraintBottom_toTopOf="@+id/framelayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/cpuDetailCard"
-        app:layout_constraintTop_toBottomOf="@+id/cpuDetailCard">
-
-        <android.support.constraint.ConstraintLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/coreinfoCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/coreInfoHeaderConsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
+                android:layout_marginTop="8dp"
                 android:background="@android:color/transparent"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/viewContainer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -64,15 +52,15 @@
                     android:id="@+id/coreInfoHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:text="@string/coreInfo"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="22sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,228 +69,308 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:rotation="45"
                     android:src="@drawable/ic_add_black_24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:tint="@color/textColorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/coreInfoHeading"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/coreInfoHeading"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
-            </android.support.constraint.ConstraintLayout>
 
-            <FrameLayout
-                android:id="@+id/viewContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginStart="2dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="@dimen/cpuDividerMargin"
+                    android:layout_marginStart="@dimen/cpuDividerMargin"
+                    android:layout_marginTop="16dp"
+                    android:background="?android:attr/listDivider"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/coreInfoHeading"
+                    tools:layout_height="10dp" />
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2">
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/coreFreqCard"
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginEnd="@dimen/cpuDividerMargin"
+                        android:layout_marginStart="@dimen/cpuDividerMargin"
+                        android:layout_marginTop="16dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/coreFreqLayout"
+                        tools:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:id="@+id/coreFreqLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginStart="4dp"
                         android:layout_marginTop="8dp"
                         android:minHeight="@dimen/CpuCoreCardMinHeight"
-                        app:cardBackgroundColor="@color/colorDark"
-                        app:cardCornerRadius="@dimen/cardCorner"
-                        app:cardElevation="@dimen/CpuCardElevation"
+                        android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <LinearLayout
-                            android:id="@+id/coreFreqLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="4dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="8dp"
-                            android:minHeight="@dimen/CpuCoreCardMinHeight"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+                    </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/freqCard"
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="12dp"
-                        app:cardBackgroundColor="@color/colorDark"
-                        app:cardCornerRadius="@dimen/cardCorner"
-                        app:cardElevation="@dimen/CpuCardElevation"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/coreFreqCard">
+                        app:layout_constraintTop_toBottomOf="@+id/divider">
 
-                        <LinearLayout
+                        <android.support.constraint.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="4dp"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginTop="8dp"
-                            android:orientation="vertical">
+                            android:layout_marginTop="12dp">
 
-                            <android.support.constraint.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/maxFreqText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/maxfreq"
+                                android:textColor="@color/textColorPrimary"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                                <TextView
-                                    android:id="@+id/staticCpuGovText"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_vertical"
-                                    android:foregroundGravity="center_vertical"
-                                    android:gravity="center_vertical"
-                                    android:text="@string/cpugov"
-                                    android:textColor="@color/textColorPrimary"
-                                    android:textStyle="bold"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginTop="8dp"
-                                    android:clickable="false"
-                                    android:foreground="?android:attr/selectableItemBackground"
-                                    app:cardCornerRadius="4dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="1.0"
-                                    app:layout_constraintStart_toEndOf="@+id/staticCpuGovText"
-                                    app:layout_constraintTop_toTopOf="parent">
-
-                                    <Spinner
-                                        android:id="@+id/cpuGovSpinner"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_vertical"
-                                        android:layout_marginBottom="4dp"
-                                        android:layout_marginTop="4dp" />
-
-                                </android.support.v7.widget.CardView>
-
-                            </android.support.constraint.ConstraintLayout>
-
-                            <android.support.constraint.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/maxFreqTextCard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginTop="4dp"
+                                android:clickable="true"
+                                android:focusableInTouchMode="false"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:hapticFeedbackEnabled="false"
+                                android:minHeight="36dp"
+                                android:minWidth="@dimen/selectorPillMinWidth"
+                                app:cardBackgroundColor="@color/colorCPUsec"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toEndOf="@+id/staticCpuGovText"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <TextView
-                                    android:id="@+id/maxFreqText"
+                                    android:id="@+id/maxFreqTextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/maxfreq"
-                                    android:textColor="@color/textColorPrimary"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginEnd="14dp"
+                                    android:layout_marginStart="14dp"
+                                    android:layout_marginTop="10dp"
+                                    android:minWidth="20dp"
+                                    android:paddingBottom="2dp"
+                                    android:paddingEnd="4dp"
+                                    android:paddingStart="4dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="@color/colorCPUText"
+                                    android:textSize="13sp"
                                     android:textStyle="bold"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    android:typeface="monospace"
+                                    tools:text="1495 MHz" />
+                            </android.support.v7.widget.CardView>
 
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginTop="8dp"
-                                    app:cardCornerRadius="4dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="1.0"
-                                    app:layout_constraintStart_toEndOf="@+id/maxFreqText"
-                                    app:layout_constraintTop_toTopOf="parent">
+                        </android.support.constraint.ConstraintLayout>
 
-                                    <Spinner
-                                        android:id="@+id/maxFreqSpinner"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-                                        android:layout_marginTop="4dp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/maxFreqText"
-                                        app:layout_constraintTop_toTopOf="parent" />
-                                </android.support.v7.widget.CardView>
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp">
 
-                            </android.support.constraint.ConstraintLayout>
+                            <TextView
+                                android:id="@+id/minFreqText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/minfreq"
+                                android:textColor="@color/textColorPrimary"
+                                android:textStyle="normal|bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                            <android.support.constraint.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/minFreqTextCard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginTop="4dp"
+                                android:clickable="true"
+                                android:focusableInTouchMode="false"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:hapticFeedbackEnabled="false"
+                                android:minHeight="36dp"
+                                android:minWidth="@dimen/selectorPillMinWidth"
+                                app:cardBackgroundColor="@color/colorCPUsec"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toEndOf="@+id/staticCpuGovText"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <TextView
-                                    android:id="@+id/minFreqText"
+                                    android:id="@+id/minFreqTextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/minfreq"
-                                    android:textColor="@color/textColorPrimary"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginEnd="14dp"
+                                    android:layout_marginStart="14dp"
+                                    android:layout_marginTop="10dp"
+                                    android:minWidth="20dp"
+                                    android:paddingBottom="2dp"
+                                    android:paddingEnd="4dp"
+                                    android:paddingStart="4dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="@color/colorCPUText"
+                                    android:textSize="13sp"
                                     android:textStyle="bold"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    android:typeface="monospace"
+                                    tools:text="468 MHz" />
+                            </android.support.v7.widget.CardView>
 
-                                <android.support.v7.widget.CardView
+                        </android.support.constraint.ConstraintLayout>
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp">
+
+                            <TextView
+                                android:id="@+id/staticCpuGovText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="8dp"
+                                android:foregroundGravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:text="@string/cpugov"
+                                android:textColor="@color/textColorPrimary"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/govTextCard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginTop="4dp"
+                                android:clickable="true"
+                                android:focusableInTouchMode="false"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:hapticFeedbackEnabled="false"
+                                android:minHeight="36dp"
+                                android:minWidth="@dimen/selectorPillMinWidth"
+                                app:cardBackgroundColor="@color/colorCPUsec"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toEndOf="@+id/staticCpuGovText"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/govTextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginTop="8dp"
-                                    app:cardCornerRadius="4dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="1.0"
-                                    app:layout_constraintStart_toEndOf="@+id/minFreqText"
-                                    app:layout_constraintTop_toTopOf="parent">
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginEnd="14dp"
+                                    android:layout_marginStart="14dp"
+                                    android:layout_marginTop="10dp"
+                                    android:minWidth="20dp"
+                                    android:paddingBottom="2dp"
+                                    android:paddingEnd="4dp"
+                                    android:paddingStart="4dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="@color/colorCPUText"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:typeface="monospace"
+                                    tools:text="Poison" />
+                            </android.support.v7.widget.CardView>
 
-                                    <Spinner
-                                        android:id="@+id/minFreqSpinner"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-                                        android:layout_marginTop="4dp" />
-                                </android.support.v7.widget.CardView>
-                            </android.support.constraint.ConstraintLayout>
+                        </android.support.constraint.ConstraintLayout>
 
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/govTunablesCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginEnd="2dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="20dp"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:foregroundGravity="center"
+                            app:cardBackgroundColor="@color/colorCPUsec"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp">
+
+                            <TextView
+                                android:id="@+id/textView4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/tunable"
+                                android:textColor="@color/colorCPUText"
+                                android:textStyle="bold"
+                                android:typeface="monospace" />
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
 
                 </android.support.constraint.ConstraintLayout>
-            </FrameLayout>
+            </android.support.constraint.ConstraintLayout>
 
-        </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
 
-    </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/framelayout2"
@@ -311,7 +379,8 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
     </FrameLayout>
 

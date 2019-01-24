@@ -15,8 +15,9 @@
 
     <string name="offline">Offline</string>
     <string name="scanning">Scanning</string>
-    <string name="core">Core %d -</string>
-    <string name="freq">%s kHz</string>
+    <string name="core">Core %d</string>
+    <string name="freq">%s</string>
+    <string name="simplyKhz">kHz</string>
     <string name="applyOnBoot">Apply On Boot</string>
     <string name="freeze">Freeze</string>
     <string name="start">Start</string>
@@ -25,6 +26,12 @@
     <string name="battery">Battery</string>
     <string name="vm">Virtual Memory</string>
     <string name="coreInfo">Core Info</string>
+    <string name="freqMHz">%s MHz</string>
+    <string name="freqkHz">%s kHz</string>
+    <string name="tapselect">(Tap to select an option)</string>
+    <string name="tunable">Governor Tunables</string>
+    <string name="numSerial">%d.</string>
+    <string name="totalTunables">Total Governor Tunables : %d</string>
 
     <!-- CPU -->
     <string name="cpu">CPU</string>
@@ -32,7 +39,9 @@
     <string name="maxfreq">Max Frequency : </string>
     <string name="minfreq">Min Frequency : </string>
     <string name="cpugov">CPU Governor : </string>
+    <string name="totalGovs">Total CPU Governors : %d</string>
+    <string name="totalFreqs">Total Frequency Levels : %d</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="blank">Blank</string>
+    <string name="tunableName"><u>Tunable Name</u></string>
+    <string name="value"><u>Value</u></string>
 </resources>

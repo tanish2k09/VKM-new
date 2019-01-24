@@ -80,9 +80,9 @@ public class SysFile {
         if(existsFile())
         {
             String command = "mkdir -p " + VKM_path + folderPath.substring(1);
-            Shell.Sync.su(command);
+            Shell.su(command).submit();
             command = "cp -f "+path+" "+vkm_file_path;
-            Shell.Sync.su(command);
+            Shell.su(command).submit();
 
             if (existsVkmFile()) {
                 try {
@@ -102,11 +102,11 @@ public class SysFile {
     private void refreshInput()
     {
         String command = "mkdir -p " + VKM_path;
-        Shell.Sync.su(command);
+        Shell.su(command).submit();
         command = "rm -f " + vkm_file_path;
-        Shell.Sync.su(command);
+        Shell.su(command).submit();
         command = "cp -f " + path + " " + vkm_file_path;
-        Shell.Sync.su(command);
+        Shell.su(command).submit();
     }
 
     public int readInput(int chars, int off)

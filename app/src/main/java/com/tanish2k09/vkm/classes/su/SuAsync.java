@@ -15,7 +15,7 @@ public class SuAsync extends AsyncTask<String, Void, Void> {
         int i = cmds.length;
         int count;
         for(count = 0; count < i; count++)
-            Shell.Async.su(cmds[count]);
+            Shell.su(cmds[count]).submit();
         return null;
     }
 }
